@@ -2,22 +2,12 @@
     "networks": [
         {
             "address": "10.255.1.0/24",
-            "name": "Servers",
+            "name": "servers",
             "monitor": true
         },
         {
-            "address": "192.168.78.0/24",
-            "name": "Local",
-            "monitor": true
-        },
-        {
-            "address": "192.168.80.0/25",
-            "name": "clientelle",
-            "monitor": true
-        },
-        {
-            "address": "192.168.80.128/25",
-            "name": "clientelle2",
+            "address": "8.8.8.8",
+            "name": "GGDNS",
             "monitor": true
         }
     ],
@@ -30,15 +20,23 @@
         "firewall_audit": true,
         "nmap_options": [
             "Host Discovery",
-            "Port Scanning"
+            "Port Scanning",
+            "OS Detection",
+            "Service Detection",
+            "Firewall/IDS Evasion"
         ],
         "tcpdump_options": [
             "HTTP Traffic",
-            "DNS Queries"
+            "DNS Queries",
+            "ICMP Traffic",
+            "TCP Connections",
+            "Custom Filters"
         ],
         "firewall_options": [
             "Rule Consistency",
-            "Default Policies"
+            "Default Policies",
+            "Unused Rules",
+            "Overlapping Rules"
         ]
     }
 }
