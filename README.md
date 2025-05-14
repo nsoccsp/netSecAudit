@@ -91,8 +91,8 @@ The system supports multiple network discovery protocols:
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd nsoccsp
+git clone https://github.com/nsoccsp/netSecAudit.git
+cd netSecAudit
 ```
 
 2. Install system dependencies (Ubuntu/Debian):
@@ -106,28 +106,46 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 3. Install Virtual Environment and Python dependencies:
 
 ```bash
-uv venv .nSocCSP
-source .nSocCSP/bin/activate
+uv venv
+source .venv/bin/activate
 uv pip install -r pyproject.toml
 ```
 
-3. Create database and admin user to initialize:
+3. 1. Locally: Create database and admin user to initialize
 
 ```Bash
 sudo -u postgres psql <<EOF
-DROP DATABASE IF EXISTS nsoccsp;
-CREATE DATABASE nsoccsp;
-DROP USER IF EXISTS nsocadmin;
+CREATE DATABASE netsecaudit;
 CREATE USER nsocadmin WITH PASSWORD 'nsocadmin';
-GRANT ALL PRIVILEGES ON DATABASE nsoccsp TO nsocadmin;
-\c nsoccsp
+GRANT ALL PRIVILEGES ON DATABASE netsecaudit TO nsocadmin;
+\c netsecaudit
 GRANT ALL PRIVILEGES ON SCHEMA public TO nsocadmin;
 EOF
+```
+3. 2. In Github Codespace: Create the database and user manually
+
+```Bash
+sudo service postgresql start
+sudo sed -i 's/peer/trust/g' /etc/postgresql/*/main/pg_hba.conf && sudo service postgresql restart
+```
+```Bash
+psql -U postgres <<EOF
+CREATE DATABASE netsecaudit;
+CREATE USER nsocadmin WITH PASSWORD 'nsocadmin';
+GRANT ALL PRIVILEGES ON DATABASE netsecaudit TO nsocadmin;
+\c netsecaudit
+GRANT ALL PRIVILEGES ON SCHEMA public TO nsocadmin;
+EOF
+```
+# Make sure you are connected to the database on Codespace:
+
+```Bash
+psql -U nsocadmin -d netsecaudit -c "\conninfo"
 ```
 
 # Export environment variables
 
-export DATABASE_URL="postgresql://nsocadmin:nsocadmin@127.0.0.1:5432/nsoccsp"
+export DATABASE_URL="postgresql://nsocadmin:nsocadmin@127.0.0.1:5432/netsecaudit"
 
 # Check the PostgreSQL logs
 
