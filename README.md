@@ -163,7 +163,6 @@ cp .env.example .env
 5. Initialize the database:
 
 ```bash
-python init_db.py
 python seed_data.py
 ```
 

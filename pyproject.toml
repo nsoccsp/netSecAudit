@@ -1,5 +1,5 @@
 [project]
-name = "nSocCSP"
+name = "netSecAudit"
 version = "0.3.0"
 description = "Network Monitoring and Security Audit"
 requires-python = ">=3.11"
