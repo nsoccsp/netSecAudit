@@ -1,0 +1,44 @@
+{
+    "networks": [
+        {
+            "address": "10.255.1.0/24",
+            "name": "Servers",
+            "monitor": true
+        },
+        {
+            "address": "192.168.78.0/24",
+            "name": "Local",
+            "monitor": true
+        },
+        {
+            "address": "192.168.80.0/25",
+            "name": "clientelle",
+            "monitor": true
+        },
+        {
+            "address": "192.168.80.128/25",
+            "name": "clientelle2",
+            "monitor": true
+        }
+    ],
+    "scan_schedule": "hourly",
+    "alert_email": "",
+    "alert_threshold": "medium",
+    "enabled_tools": {
+        "nmap": true,
+        "tcpdump": true,
+        "firewall_audit": true,
+        "nmap_options": [
+            "Host Discovery",
+            "Port Scanning"
+        ],
+        "tcpdump_options": [
+            "HTTP Traffic",
+            "DNS Queries"
+        ],
+        "firewall_options": [
+            "Rule Consistency",
+            "Default Policies"
+        ]
+    }
+}
